@@ -35,13 +35,17 @@
         </thead>
         <tbody>
         <tr th:each="ucastnik, iterStat : ${ucastnici}">
+            <td th:text="${iterStat.count}">1</td>
             <td>
                 <i class="las la-venus" style="color: red;" th:if="${ucastnik.pohlavi == T(cz.czechitas.java2webapps.lekce4.entity.Pohlavi).ZENA}"></i>
                 <i class="las la-mars"  style="color: blue;" th:if="${ucastnik.pohlavi == T(cz.czechitas.java2webapps.lekce4.entity.Pohlavi).MUZ}"></i>
             </td>
             <td th:text="${ucastnik.jmeno}">Medvídek</td>
             <td th:text="${ucastnik.prijmeni}">Pú</td>
-            <td th:text="${ucastnik.bydliste}">Stokorcový les</td>
+            <td>
+            <span th:if="${ucastnik.bydliste} != null" th:text="${ucastnik.bydliste}">Stokorcový les</span>
+                <em th:if="${ucastnik.bydliste} == null">neuvedeno</em>
+            </td>
             <td><a href="/ucastnici/detail" th:href="@{/ucastnici/detail(id=${iterStat.index})}"class="btn btn-primary">Detail</a></td>
         </tr>
         </tbody>
